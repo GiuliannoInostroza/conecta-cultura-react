@@ -7,8 +7,8 @@ import PiePagina from "./components/PiePagina";
 function App() {
   return (
     <>
-      <Navegacion />
       <Cabecera />
+      <Navegacion />
       <main className="container py-4">
         <Bienvenida />
         <div className="row g-4">
