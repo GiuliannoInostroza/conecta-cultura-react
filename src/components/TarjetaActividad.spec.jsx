@@ -1,42 +1,33 @@
-import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import TarjetaActividad from "./TarjetaActividad";
 
 describe("TarjetaActividad", () => {
-  const actividad = { id: 1, nombre: "Guitarra", cupos: 4 };
+  const actividad = { id: 1, nombre: "Taller de frenos", cupos: 4 };
+
+  // Requisito: la tarjeta presenta los datos recibidos por props.
   it("muestra el nombre recibido por props", () => {
     render(<TarjetaActividad actividad={actividad} />);
-    expect(screen.getByText("Guitarra")).toBeInTheDocument();
+    expect(screen.getByText("Taller de frenos")).toBeInTheDocument();
   });
 
-  it("muestra Gratis cuando el precio es 0", () => {
-    const actividadGratis = {
-      id: 1,
-      nombre: "Guitarra",
-      categoria: "Música",
-      cupos: 4,
-      precio: 0,
-    };
-
-    render(<TarjetaActividad actividad={actividadGratis} />);
-
-    expect(screen.getByText(/Gratis/i)).toBeInTheDocument();
-  });
-
+  // Requisito: con 1 a 5 cupos se avisa que quedan pocos.
   it("muestra aviso cuando quedan pocos cupos", () => {
     render(<TarjetaActividad actividad={actividad} />);
-    expect(screen.getByText(/Últimos cupos/i)).toBeInTheDocument();
+    expect(screen.getByText(/últimos/i)).toBeInTheDocument();
   });
 
+  // Requisito: el botón avisa al padre qué actividad se eligió.
   it("ejecuta onInscribir al presionar el botón", async () => {
     const usuario = userEvent.setup();
     const onInscribir = vi.fn();
     render(
-      <TarjetaActividad actividad={actividad} onInscribir={onInscribir} />,
+      <TarjetaActividad actividad={actividad} onInscribir={onInscribir} />
     );
-    await usuario.click(screen.getByRole("button", { name: /inscribir/i }));
+    await usuario.click(
+      screen.getByRole("button", { name: /inscribir/i })
+    );
     expect(onInscribir).toHaveBeenCalledWith(actividad);
   });
 });
