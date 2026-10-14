@@ -1,28 +1,34 @@
-function TarjetaActividad({ actividad, onInscribir }) {
+import { formatearPrecio } from "../utils/precio";
+
+function TarjetaActividad({ actividad, onInscribir, children }) {
   return (
-    <article className="card h-100">
-      <div className="card-body">
+    <article className="card h-100 shadow-sm">
+      <div className="card-body d-flex flex-column">
         <h2 className="h5">{actividad.nombre}</h2>
 
-        <p>{actividad.categoria}</p>
+        <p className="text-body-secondary mb-2">{actividad.categoria}</p>
 
-        <p>
-          Precio: {actividad.precio === 0 ? "Gratis" : `$${actividad.precio}`}
-        </p>
+        {actividad.precio !== undefined && (
+          <p className="mb-1">Precio: {formatearPrecio(actividad.precio)}</p>
+        )}
 
-        <p>Cupos: {actividad.cupos}</p>
+        <p className="mb-2">Cupos: {actividad.cupos}</p>
 
         {actividad.cupos > 0 && actividad.cupos <= 5 && (
           <p className="text-danger fw-bold">¡Últimos cupos!</p>
         )}
 
-        <button
-          className="btn btn-primary"
-          onClick={() => onInscribir(actividad)}
-          disabled={actividad.cupos === 0}
-        >
-          Inscribirme
-        </button>
+        <div className="mt-auto d-flex flex-wrap align-items-center gap-3">
+          <button
+            className="btn btn-primary"
+            onClick={() => onInscribir(actividad)}
+            disabled={actividad.cupos === 0}
+          >
+            Inscribirme
+          </button>
+
+          {children}
+        </div>
       </div>
     </article>
   );

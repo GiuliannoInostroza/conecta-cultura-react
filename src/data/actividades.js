@@ -96,3 +96,10 @@ export const actividades = [
     cupos: 10,
   },
 ];
+
+export const categorias = [
+  "Mecánica",
+  "Eventos",
+  "Repuestos",
+  "Estética y Tuning",
+];

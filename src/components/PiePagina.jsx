@@ -1,16 +1,20 @@
 function PiePagina() {
   return (
-    <footer class="py-4 bg-dark text-white">
-      <p>
-        <strong>Conecta Cultura</strong>
-      </p>
-      <address>
-        Contacto:{" "}
-        <a href="mailto:hola@conectacultura.cl">hola@conectacultura.cl</a>
-      </address>
-      <p>
-        <small>Proyecto académico · Desarrollo FullStack II</small>
-      </p>
+    <footer className="py-4 mt-auto bg-dark text-white">
+      <div className="container">
+        <p className="mb-1">
+          <strong>VCarMeet</strong>
+        </p>
+        <address className="mb-1">
+          Contacto:{" "}
+          <a className="link-light" href="mailto:hola@conectacultura.cl">
+            hola@conectacultura.cl
+          </a>
+        </address>
+        <p className="mb-0">
+          <small>Proyecto académico - Desarrollo FullStack II</small>
+        </p>
+      </div>
     </footer>
   );
 }
