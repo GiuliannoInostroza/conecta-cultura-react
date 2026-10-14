@@ -8,6 +8,8 @@ function TarjetaActividad({ actividad, onInscribir }) {
         {actividad.cupos > 0 && actividad.cupos <= 5 && (
           <p className="text-danger fw-bold">¡Últimos cupos!</p>
         )}
+        <p>Precio: ${actividad.precio}</p>
+        {actividad.precio <= 0 && <p className="text-success fw-bold">¡Gratis!</p>}
         <button
           className="btn btn-primary"
           onClick={() => onInscribir(actividad)}
