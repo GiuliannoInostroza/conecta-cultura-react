@@ -1,15 +1,29 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 function Navegacion() {
   return (
     <Navbar expand="md" bg="light" data-bs-theme="light">
       <Container>
-        <Navbar.Brand href="#inicio">Conecta Cultura</Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/">
+          Conecta Cultura
+        </Navbar.Brand>
+
         <Navbar.Toggle aria-controls="menu-principal" />
+
         <Navbar.Collapse id="menu-principal">
           <Nav className="ms-auto">
-            <Nav.Link href="#inicio">Inicio</Nav.Link>
-            <Nav.Link href="#actividades">Actividades</Nav.Link>
+            <Nav.Link as={NavLink} to="/">
+              Inicio
+            </Nav.Link>
+
+            <Nav.Link as={NavLink} to="/actividades">
+              Actividades
+            </Nav.Link>
+
+            <Nav.Link as={NavLink} to="/admin/actividades">
+              Administración
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
